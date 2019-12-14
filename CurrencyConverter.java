@@ -16,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CurrencyConverter{
-	public static final String ACCESS_KEY = accessKey;  //Input own api access key
+	public static final String ACCESS_KEY = "117bc90f6fff6795de66159cea0b653a";
 	public static final String BASE_URL = "http://apilayer.net/api/";
 	public static final String ENDPOINT = "live";
 
@@ -36,9 +36,9 @@ public class CurrencyConverter{
 			System.out.println("\nSingle-Currency Conversion");
 			
 			// access the parsed JSON objects
-			System.out.println("From : " + from);//jsonObject.getJSONObject("query").getString("from"));
-			System.out.println("To : " + to);//jsonObject.getJSONObject("query").getString("to"));
-			System.out.println("Amount : " + amount);//jsonObject.getJSONObject("query").getLong("amount"));
+			System.out.println("From : " + from);
+			System.out.println("To : " + to);
+			System.out.println("Amount : " + amount + " " + from);
 			
 			//source currency to USD rate
 			double sourceToUSD = jsonObject.getJSONObject("quotes").getDouble("USD"+to);
@@ -71,55 +71,28 @@ public class CurrencyConverter{
 	}
 	
 	public static void main(String[] args) throws IOException{
-		//sendConvertRequest();
 		Scanner sc = new Scanner(System.in);
-		boolean stop=false;
 		boolean USSource;
-		//int cmd;
 		String src, dest;
 		double amount;
 		
-		//Main menu
-		while(!stop) {
-			System.out.println("Currency Converter");
-			System.out.print("Enter 0 to exit\n");
-			//System.out.print("Enter 1 - convert from CAD to USD\n");
-			//System.out.print("Enter 2 - convert from USD to CAD\n");
-			System.out.println("Enter Source Currency Code: (i.e CAD, USD, etc)");
-			src = sc.nextLine().toUpperCase();
-			System.out.println("Enter Destination Currency Code: (i.e CAD, USD, etc)");
-			dest = sc.nextLine().toUpperCase();
-			System.out.println("Enter amount to convert: ");
-			amount = sc.nextDouble();
-			if(src == "0" || dest == "0") {
-				stop=false;
-				break;
-			}
-			if(src == "USD")
-				USSource=true;
-			else
-				USSource=false;
-			sendConvertRequest(src, dest, amount, USSource);
-			
-			/*cmd = sc.nextInt();
-			switch(cmd){
-			case 1:
-				System.out.print("Enter CAD amount: ");
-				fromValue=sc.nextDouble();
-				sendConvertRequest("CAD", "USD", fromValue, false);
-				break;
-			case 2:
-				System.out.print("Enter USD amount: ");
-				fromValue=sc.nextDouble();
-				sendConvertRequest("USD", "CAD", fromValue, true);
-				break;
-			case 0:
-				stop=true;
-				break;
-			default: System.out.println("Invalid entry, try again"); break;
-			}*/
-	
-		}
+		//Main function
+		System.out.println("Currency Converter");
+		System.out.println("Enter Source Currency Code: (i.e CAD, USD, etc)");
+		src = sc.nextLine().toUpperCase();
+		
+		System.out.println("Enter Destination Currency Code: (i.e CAD, USD, etc)");
+		dest = sc.nextLine().toUpperCase();
+		
+		System.out.println("Enter amount to convert: ");
+		amount = sc.nextDouble();
+		
+		if(src == "USD")
+			USSource=true;
+		else
+			USSource=false;
+		
+		sendConvertRequest(src, dest, amount, USSource);
 		httpClient.close();
 		sc.close();
 		return;
