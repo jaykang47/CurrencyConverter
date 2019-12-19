@@ -16,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CurrencyConverter{
-	public static final String ACCESS_KEY = "117bc90f6fff6795de66159cea0b653a";
+	public static final String ACCESS_KEY = "Access_Code";	//Input access code
 	public static final String BASE_URL = "http://apilayer.net/api/";
 	public static final String ENDPOINT = "live";
 
